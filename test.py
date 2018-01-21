@@ -2,8 +2,8 @@
 
 import unittest
 
-from ruleset.RuleSet import RuleSet
-from ruleset.Options import Options
+from ruleset.ruleset import RuleSet
+from ruleset.options import Options
 
 
 class Test(unittest.TestCase):
