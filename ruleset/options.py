@@ -18,6 +18,14 @@ class Options:
         self.rs = rs
         self.selectedOpts = set()
 
+    def selection(self):
+        """
+        Returns the `selectedOpts` for the Options object.
+
+        :return: (set) selected options
+        """
+        return self.selectedOpts
+
     def toggle(self, option):
         """
         Implements functionality for toggling any option. It respects all
@@ -51,11 +59,3 @@ class Options:
         for dfsOpt in reverseDfsPath:
             if dfsOpt in self.selectedOpts:
                 self.selectedOpts.remove(dfsOpt)
-
-    def selection(self):
-        """
-        Returns the `selectedOpts` for the Options object.
-
-        :return: (set) selected options
-        """
-        return self.selectedOpts

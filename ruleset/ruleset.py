@@ -51,7 +51,7 @@ class RuleSet:
         depend, directly or indirectly, on another option and also be mutually
         exclusive with it.
 
-        :return: True if the RuleSet object is coherent, False otherwise.
+        :return: True if the RuleSet object is coherent, False otherwise
         """
         allOptions = self.deps.keys()
         for option in allOptions:
@@ -70,31 +70,6 @@ class RuleSet:
                     if dep1 != dep2 and (dep1 in self.conflicts[dep2] or dep2 in self.conflicts[dep1]):
                         return False
         return True
-
-    def __addNewOptions(self, option1, option2):
-        """
-        Adds any new options to deps, reverseDeps and conflicts dictionaries
-        so that we always have all the keys present in all of these three
-        data structures.
-
-        :param option1: (str) first option
-        :param option2: (str) second option
-        :return: None
-        """
-        if option1 not in self.deps:
-            self.deps[option1] = set()
-        if option2 not in self.deps:
-            self.deps[option2] = set()
-
-        if option1 not in self.reverseDeps:
-            self.reverseDeps[option1] = set()
-        if option2 not in self.reverseDeps:
-            self.reverseDeps[option2] = set()
-
-        if option1 not in self.conflicts:
-            self.conflicts[option1] = list()
-        if option2 not in self.conflicts:
-            self.conflicts[option2] = list()
 
     def forwardDfs(self, start):
         """
@@ -133,3 +108,28 @@ class RuleSet:
                 visited.add(vertex)
                 stack.extend(graph[vertex] - visited)
         return visited
+
+    def __addNewOptions(self, option1, option2):
+        """
+        Adds any new options to deps, reverseDeps and conflicts dictionaries
+        so that we always have all the keys present in all of these three
+        data structures.
+
+        :param option1: (str) first option
+        :param option2: (str) second option
+        :return: None
+        """
+        if option1 not in self.deps:
+            self.deps[option1] = set()
+        if option2 not in self.deps:
+            self.deps[option2] = set()
+
+        if option1 not in self.reverseDeps:
+            self.reverseDeps[option1] = set()
+        if option2 not in self.reverseDeps:
+            self.reverseDeps[option2] = set()
+
+        if option1 not in self.conflicts:
+            self.conflicts[option1] = list()
+        if option2 not in self.conflicts:
+            self.conflicts[option2] = list()
