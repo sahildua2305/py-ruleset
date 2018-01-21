@@ -99,6 +99,8 @@ class RuleSet:
     def forwardDfs(self, start):
         """
         Implements Depth-First Search (DFS) on the basis of `deps` dictionary.
+        It's used when we select an option while respecting all the existing
+        rules.
 
         :param start: (str) starting option for Depth-First Search
         :return: Set of options present in the DFS traversal from start option
@@ -107,7 +109,9 @@ class RuleSet:
 
     def reverseDfs(self, start):
         """
-        Implements Depth-First Search (DFS) on the basis of `reverseDeps` dictionary.
+        Implements Depth-First Search (DFS) on the basis of `reverseDeps`
+        dictionary. It's used when we deselect an option while respecting
+        all the existing rules.
 
         :param start: (str) starting option for Depth-First Search
         :return: Set of options present in the DFS traversal from start option

@@ -28,11 +28,11 @@ class Options:
         :return: None
         """
         if option not in self.selectedOpts:
-            # dfs on option and select all visited options
+            # Forward DFS on `option` and select all visited options
             dfsPath = list(self.rs.forwardDfs(option))
             for dfsOpt in dfsPath:
                 self.selectedOpts.add(dfsOpt)
-                # get all conflicting options for dfsOpt
+                # Remove all the conflicting options for `dfsOpt`
                 conflicts = self.rs.conflicts[dfsOpt]
                 for conflict in conflicts:
                     self.__deselectOption(conflict)
@@ -41,16 +41,13 @@ class Options:
 
     def __deselectOption(self, option):
         """
-        Recursive implementation to deselect options based on the rules
-        defined in the RuleSet object.
+        Deselects options based on the rules defined in the RuleSet object.
 
-        :param option: (str) option to start the recursion from
+        :param option: (str) option to deselect
         :return: None
         """
-        # reverse dfs on option and deselect all visited options
+        # Reverse DFS on `option` and deselect all visited options
         reverseDfsPath = list(self.rs.reverseDfs(option))
-        # if len(reverseDfsPath) <= 1:
-        #     return
         for dfsOpt in reverseDfsPath:
             if dfsOpt in self.selectedOpts:
                 self.selectedOpts.remove(dfsOpt)
